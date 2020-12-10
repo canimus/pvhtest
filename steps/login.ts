@@ -27,7 +27,7 @@ When(/I inspect the (\w+) events/, async (event_type: number) => {
                 "session_id" : {"type" : "string"}
             }}
         },
-        "required" : ["account_ids"]
+        "required" : ["account_id", "client_name", "project_id", "visitors"]
     }
 
     // let eventValidator = new Validator();
@@ -38,8 +38,6 @@ When(/I inspect the (\w+) events/, async (event_type: number) => {
     //     statusCode: 204
     // });
 
-    
-    
     // mock.respond('Zero Events XXX');
 
     await browser.url("https://be.tommy.com");
@@ -54,15 +52,8 @@ When(/I inspect the (\w+) events/, async (event_type: number) => {
     requests.filter(d=>{
         return d.url.includes("optimizely")
     }).map(d=>{
-        
-        console.log(d.body);
-        console.log(typeof(d.body));
-
-        
         console.log(validate(d.body, eventSchema));
-        console.log(validate(d.body, eventSchema).valid);
         expect(validate(d.body, eventSchema).valid, "Uh oh! schema violation!").to.be.true;
-
     });
 
     let title = await browser.getTitle();

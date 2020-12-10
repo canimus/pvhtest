@@ -2,6 +2,7 @@ import {Given, Then, When} from 'cucumber';
 import { validate } from 'jsonschema';
 import { expect } from 'chai';
 
+
 Given('I am in TH site', async () => {
     return "Done";
 });
@@ -26,7 +27,7 @@ When(/I inspect the (\w+) events/, async (event_type: number) => {
                 "session_id" : {"type" : "string"}
             }}
         },
-        "required" : ["account_id"]
+        "required" : ["account_ids"]
     }
 
     // let eventValidator = new Validator();
@@ -57,10 +58,11 @@ When(/I inspect the (\w+) events/, async (event_type: number) => {
         console.log(d.body);
         console.log(typeof(d.body));
 
+        
         console.log(validate(d.body, eventSchema));
         console.log(validate(d.body, eventSchema).valid);
-        expect(validate(d.body, eventSchema).valid).to.be.true;
-        
+        expect(validate(d.body, eventSchema).valid, "Uh oh! schema violation!").to.be.true;
+
     });
 
     let title = await browser.getTitle();

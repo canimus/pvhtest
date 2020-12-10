@@ -33,12 +33,12 @@ When(/I inspect the (\w+) events/, async (event_type: number) => {
     // let eventValidator = new Validator();
     // eventValidator.addSchema(eventSchema, '/landingEvent');
 
-    // let mock = await browser.mock('https://logx.optimizely.com/v1/events', {
-    //     method: 'POST',
-    //     statusCode: 204
-    // });
+    let mock = await browser.mock('https://logx.optimizely.com/v1/events', {
+        method: 'POST',
+        statusCode: 204
+    });
 
-    // mock.respond('Zero Events XXX');
+    mock.respond('Zero Events XXX');
 
     await browser.url("https://be.tommy.com");
 

@@ -11,6 +11,10 @@ Then('I pass parameters', async(table: any) => {
     console.log(table.rows());
 });
 
+Then('I pass on purpose', async() => {
+    return "skipped";
+});
+
 When(/I inspect the (\w+) events/, async (event_type: number) => {
     console.log(event_type);
 

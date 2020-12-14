@@ -15,4 +15,5 @@ Feature: Events optimizely
             | element | value |
             | a       | 1     |
             | b       | 2     |
+        And I pass on purpose
         Then I see an event with a valid schema

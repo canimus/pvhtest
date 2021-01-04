@@ -2,7 +2,6 @@ import {Given, Then, When} from 'cucumber';
 import { validate } from 'jsonschema';
 import { expect } from 'chai';
 
-
 Given('I am in TH site', async () => {
     return "Done";
 });
@@ -45,6 +44,7 @@ When(/I inspect the (\w+) events/, async (event_type: number) => {
     mock.respond('Zero Events XXX');
 
     await browser.url("https://be.tommy.com");
+    await $('div.cookie-notice button').then(d=>d.click())
 
     await browser.setupInterceptor();
     await browser.expectRequest('POST', 'https://logx.optimizely.com/v1/events', 204);
